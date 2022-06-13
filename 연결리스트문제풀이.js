@@ -102,3 +102,67 @@ for (let i = 0; i < input_2.length; i++) {
   ll_2.makeFiles(input_2[i]);
   answer_2(ll_2).printNode();
 }
+
+function Node(data) {
+  this.data = data;
+  this.next = null;
+}
+
+function LinkedList_3() {
+  this.head = null;
+}
+
+function answer_3(n, m, k) {
+  let result = [];
+
+  // 1. Circular Linked List 제작.
+  let ll = new LinkedList_3();
+  let current, prev;
+
+  for (let i = 1; i <= n; i++) {
+    current = new Node(i);
+    if (i === 1) {
+      ll.head = current;
+    } else {
+      prev.next = current;
+    }
+    prev = current;
+  }
+  current.next = ll.head;
+
+  // 2. Start node 위치 설정.
+  current = ll.head;
+  while (--m) {
+    prev = current;
+    current = current.next;
+  }
+
+  // 3. 후보자들 중 k만큼 움직이면서 제거 --> 단, 혼자 남을 때
+  let count;
+  while (current.next != current) {
+    result.push(current.data);
+    prev.next = current.next;
+
+    count = k;
+    while (count--) {
+      prev = current;
+      current = current.next;
+    }
+  }
+
+  // 4. 혼자 남은 후보 번호를 result 추가
+  result.push(current.data);
+
+  return result;
+}
+
+let input_3 = [
+  [8, 2, 3],
+  [10, 2, 3],
+  [20, 5, 7],
+];
+
+for (let i = 0; i < input.length; i++) {
+  process.stdout.write(`#${i + 1}`);
+  console.log(answer_3(input_3[i][0], input_3[i][1], input_3[i][2]));
+}
