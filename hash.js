@@ -84,3 +84,14 @@ HashTable.prototype.print = function () {
     }
   }
 };
+
+// 충돌해결 (use djb2)
+const HASH_SIZE_2 = 1013;
+
+HashTable.prototype.hashCode_2 = function (key, value) {
+  let hash = 5381;
+  for (let i = 0; i < key.length; i++) {
+    hash = hash * 33 + key.charCodeAt(i);
+  }
+  return hash % HASH_SIZE_2;
+};
