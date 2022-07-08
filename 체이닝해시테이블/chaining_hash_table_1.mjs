@@ -1,5 +1,3 @@
-import { timeStamp } from "console";
-import { captureRejectionSymbol } from "events";
 import { LinkedList } from "./연결리스트.mjs";
 
 const HASH_SIZE = 37;
