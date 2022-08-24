@@ -121,47 +121,47 @@ for (let i = 0; i < input_2.length; i++) {
 // 2 6            2
 // 6              6
 
-// function answer_3(priorities, select) {
-//   let result = -1;
-//   let vq = [];
-//   let pq = [];
+function answer_3(priorities, select) {
+  let result = -1;
+  let vq = [];
+  let pq = [];
 
-//   for (let i = 0; i < priorities.length; i++) {
-//     vq.push(i);
-//     pq.push(priorities[i]);
-//   }
+  for (let i = 0; i < priorities.length; i++) {
+    vq.push(i);
+    pq.push(priorities[i]);
+  }
 
-//   let count = 0;
-//   while (true) {
-//     if (pq[0] === Math.max(...priorities)) {
-//       if (vq[0] === select) {
-//         count++;
-//         result = count;
-//         break;
-//       } else {
-//         pq.shift();
-//         vq.shift();
-//         count++;
-//       }
-//     } else {
-//       pq.push(pq.shift());
-//       vq.push(vq.shift());
-//     }
-//   }
+  let count = 0;
+  while (true) {
+    if (pq[0] === Math.max(...priorities)) {
+      if (vq[0] === select) {
+        count++;
+        result = count;
+        break;
+      } else {
+        pq.shift();
+        vq.shift();
+        count++;
+      }
+    } else {
+      pq.push(pq.shift());
+      vq.push(vq.shift());
+    }
+  }
 
-//   return result;
-// }
+  return result;
+}
 
-// let input_3 = [
-//   [[3], 0],
-//   [[3, 4, 5, 6], 2],
-//   [[1, 1, 5, 1, 1, 1], 0],
-// ];
+let input_3 = [
+  [[3], 0],
+  [[3, 4, 5, 6], 2],
+  [[1, 1, 5, 1, 1, 1], 0],
+];
 
-// for (let i = 0; i < input_3.length; i++) {
-//   process.stdout.write(`#${i + 1}`);
-//   console.log(answer_3(input_3[i][0], input_3[i][1]));
-// }
+for (let i = 0; i < input_3.length; i++) {
+  process.stdout.write(`#${i + 1}`);
+  console.log(answer_3(input_3[i][0], input_3[i][1]));
+}
 
 function CircularQueue(size) {
   this.array = new Array(size);
