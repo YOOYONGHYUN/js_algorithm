@@ -97,11 +97,27 @@ HashTable.prototype.put = function (key) {
 
 HashTable.prototype.get = function (key) {
   let index = this.hashCode(key);
+  let startIndex = index;
+
+  do {
+    if (this.table[index] !== undefined && this.table[index].key === key) {
+      return this.table[index].value;
+    }
+    index = (index + 1) % this.size;
+  } while (index !== startIndex);
 };
 
 function answer_3(name) {
   let result = [];
   let ht = new HashTable(name.length);
+
+  for (let i = 0; i < name.length; i++) {
+    ht.put(name[i]);
+  }
+
+  for (let i = 0; i < name.length; i++) {
+    result.push(ht.get(name[i]));
+  }
 
   return result;
 }
